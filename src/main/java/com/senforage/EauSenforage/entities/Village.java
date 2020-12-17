@@ -22,20 +22,32 @@ public class Village implements Serializable{
 	private int id;
 	@Column
 	private String nom; 
-	@ManyToOne
-	@JoinColumn(name="abonne_ID")
-	private Abonne abonne ;
 	@OneToMany(mappedBy="village",fetch=FetchType.LAZY)
+	private List<Abonne> abonnes = new ArrayList<>();
+	@OneToMany(mappedBy="village", fetch=FetchType.LAZY)
 	private List<User> users = new ArrayList<>();
+	
 	public Village() {
 		//super();
 	}
-	public Village(int id, String nom, Abonne abonne, List<User> user) {
+	public Village(int id, String nom, List<Abonne> abonnes, List<User> users) {
 		//super();
 		this.id = id;
 		this.nom = nom;
-		this.abonne = abonne;
-		this.users = user;
+		this.abonnes = abonnes;
+		this.users = users;
+	}
+	public Village(int id, String nom) {
+		//super();
+		this.id = id;
+		this.nom = nom;
+		
+	}
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 	public int getId() {
 		return id;
@@ -49,23 +61,16 @@ public class Village implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public Abonne getAbonne() {
-		return abonne;
+	public List<Abonne> getAbonnes() {
+		return abonnes;
 	}
-	public void setAbonne(Abonne abonne) {
-		this.abonne = abonne;
-	}
-	public List<User> getUser() {
-		return users;
-	}
-	public void setUser(List<User> user) {
-		this.users = user;
+	public void setAbonnes(List<Abonne> abonnes) {
+		this.abonnes = abonnes;
 	}
 	@Override
 	public String toString() {
-		return "Village [id=" + id + ", nom=" + nom + ", abonne=" + abonne + ", user=" + users + "]";
+		return "Village [id=" + id + ", nom=" + nom + ", abonnes=" + abonnes + "]";
 	}
-	
 	
 	
 	}

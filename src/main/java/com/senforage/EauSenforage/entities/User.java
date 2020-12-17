@@ -35,7 +35,7 @@ public class User implements Serializable{
 	private int etat;
 	@ManyToOne	
 	@JoinColumn(name="village_ID")
-	private Village village = new Village();
+	private Village village;
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private List<Abonne> abonnes = new ArrayList<>();
 	
@@ -61,6 +61,18 @@ public class User implements Serializable{
 		this.village = village;
 		this.abonnes = abonnes;
 		this.roles = roles;
+	}
+	public User(int id, String nom, String prenom, String email, String password, int etat, Village village) {
+		//super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.password = password;
+		this.etat = etat;
+		this.village = village;
+		
+		
 	}
 
 	public int getId() {

@@ -27,6 +27,7 @@ public class Abonne implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="village_ID")
 	private Village village ;
+	
 	@ManyToOne
 	@JoinColumn(name="user_ID")
 	private User user ;
@@ -42,6 +43,7 @@ public class Abonne implements Serializable{
 		this.village = village;
 		this.user = user;
 	}
+	
 	public int getId() {
 		return id;
 	}

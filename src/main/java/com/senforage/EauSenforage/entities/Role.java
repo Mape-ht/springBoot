@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,14 +21,24 @@ public class Role implements Serializable{
 	private int id;
 	@Column
 	private String nom;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "roles")
 	private List<User> users = new ArrayList<User>();
 	
 	public Role() {
-		super();
+		//super();
 	}
+	
+	
+	public Role(int id, String nom, List<User> users) {
+		//super();
+		this.id = id;
+		this.nom = nom;
+		this.users = users;
+	}
+
+
 	public Role(int id, String nom) {
-		super();
+		//super();
 		this.id = id;
 		this.nom = nom;
 	}
